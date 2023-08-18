@@ -1,0 +1,29 @@
+---
+# defaults file for role_nutanix_prism_api
+nutanix_host: ""
+nutanix_username: ""
+nutanix_password: ""
+nutanix_port: 9440
+validate_certs: false
+nutanix_debug: false
+#
+# v4_api_availability:
+#   - pc_version: pc.2022.6
+#     apis:
+#     - aiops: v4.0.a1
+#     - clustermgmt:
+#     - files:
+#     - iam:
+#     - lcm:
+#     - prism:
+#     - storage:
+#   - pc_version: pc.2022.9
+#     aiops: v4.0.a1
+#     clustermgmt:
+#     files:
+#     iam:
+#     lcm:
+#     networking:
+#     prism:
+#     vmm:
+#     storage:

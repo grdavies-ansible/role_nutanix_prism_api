@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  gather_facts: false
+  roles:
+    - role: ../..
+  vars:
+    nutanix_host: 10.38.72.37
+    nutanix_username: admin
+    nutanix_password: nx2Tech568!
+    nutanix_debug: true

@@ -1,0 +1,54 @@
+---
+# tasks/connect_api.yml file for role_nutanix_prism_api
+- name: Generate basic authorization string
+  ansible.builtin.set_fact:
+    nutanix_auth_string: "{{ nutanix_username }}:{{ nutanix_password }}"
+  no_log: true
+  when:
+    - nutanix_username is defined
+    - nutanix_username != ""
+    - nutanix_password is defined
+    - nutanix_password != ""
+
+- name: Generate authorization header
+  ansible.builtin.set_fact:
+    nutanix_api_auth: "Basic {{ nutanix_auth_string | b64encode(encoding='ascii') }}"
+  when: nutanix_auth_string is defined
+
+- name: Debug nutanix_api_auth
+  ansible.builtin.debug:
+    var: nutanix_api_auth
+  when: nutanix_debug
+
+- name: Unset basic authorization string
+  ansible.builtin.set_fact:
+    nutanix_auth_string: ""
+  no_log: true
+  when: nutanix_auth_string is defined
+
+- name: Test logon to API
+  ansible.builtin.uri:
+    url: "https://{{ nutanix_host }}:{{ nutanix_port }}/api/nutanix/v3/users/me"
+    method: GET
+    validate_certs: "{{ validate_certs }}"
+    body_format: json
+    headers:
+      Authorization: "{{ nutanix_api_auth }}"
+    status_code: 200
+    return_content: true
+  register: nutanix_api_login
+  ignore_errors: false
+
+- name: Debug nutanix_api_login
+  ansible.builtin.debug:
+    var: nutanix_api_login
+  when: nutanix_debug
+
+- name: Set Prism endpoint type
+  ansible.builtin.set_fact:
+    nutanix_endpoint_prism_type: "{{ nutanix_api_login.x_ntnx_env }}"
+
+- name: Debug nutanix_endpoint_prism_type
+  ansible.builtin.debug:
+    var: nutanix_endpoint_prism_type
+  when: nutanix_debug
