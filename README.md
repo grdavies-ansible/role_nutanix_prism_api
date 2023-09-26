@@ -19,9 +19,10 @@ Input Variables
 Returned Variables
 ------------------
 
-| Variable                              | Values                                                                                 | Comments                                                                                                                                                                                                     |
-|---------------------------------------|----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| role_nutanix_prism_api_endpoint_type  | 'pe' or 'pc'                                                                           | Indicates whether the API session was initiated against a Nutanix NCI cluster (Prism Element 'pe') or Nutanix NCM (Prism Central 'pc').                                                                      |
+| Variable                                | Values                                                                                 | Comments                                                                                                                                                                                                     |
+|-----------------------------------------|----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| role_nutanix_prism_api_endpoint_type    | 'pe' or 'pc'                                                                           | Indicates whether the API session was initiated against a Nutanix NCI cluster (Prism Element 'pe') or Nutanix NCM (Prism Central 'pc').                                                                      |
+| role_nutanix_prism_api_auth_string_b64  |                                                                                        | Base64 'basic' authentication string to use to re-authenticate to the Nutanix Prism API                                                                                                                      |
 
 Dependencies
 ------------
