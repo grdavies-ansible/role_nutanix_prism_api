@@ -1,11 +1,10 @@
-Nutanix Role for Prism LCM Software & Firmware Updates
+# Nutanix Role for Prism LCM Software & Firmware Updates
 =========
 
 This Ansible role invokes LCM to perform an inventory operation followed by software and firmware updates if necessary.
 
 
-Input Variables
----------------
+## Input Variables
 
 | Variable                              | Required | Default | Choices                                                                                | Comments                                                                                                                                                                                                     |
 |---------------------------------------|----------|---------|----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -16,21 +15,19 @@ Input Variables
 | role_nutanix_prism_api_validate_certs | no       | no      | true / false                                                                           | Whether to check if Prism UI certificates are valid.                                                                                                                                                         |
 | role_nutanix_prism_api_debug          | no       | false   | true / false                                                                           | Whether or not to enable debugging output.                                                                                                                                                                   |
 
-Returned Variables
-------------------
+## Returned Variables
 
 | Variable                                | Values                                                                                 | Comments                                                                                                                                                                                                     |
 |-----------------------------------------|----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | role_nutanix_prism_api_endpoint_type    | 'pe' or 'pc'                                                                           | Indicates whether the API session was initiated against a Nutanix NCI cluster (Prism Element 'pe') or Nutanix NCM (Prism Central 'pc').                                                                      |
 | role_nutanix_prism_api_auth_string_b64  |                                                                                        | Base64 'basic' authentication string to use to re-authenticate to the Nutanix Prism API                                                                                                                      |
+| role_nutanix_prism_api_url_base         |                                                                                        | Variable set to "role_nutanix_prism_api_host:role_nutanix_prism_api_port" to reduce line length in other roles                                                                                                |
 
-Dependencies
-------------
+## Dependencies
 
 - none
 
-Example Playbook
-----------------
+## Example Playbook
 
 This example playbook will invoke LCM on a specific cluster running only a software upgrade for "NCC"
 
@@ -44,12 +41,10 @@ This example playbook will invoke LCM on a specific cluster running only a softw
    role_nutanix_prism_api_password: nx2Tech165!
 ```
 
-License
--------
+## License
 
 See LICENSE.md
 
-Author Information
-------------------
+## Author Information
 
 Ross Davies
