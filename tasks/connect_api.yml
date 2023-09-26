@@ -2,53 +2,49 @@
 # tasks/connect_api.yml file for role_nutanix_prism_api
 - name: Generate basic authorization string
   ansible.builtin.set_fact:
-    nutanix_auth_string: "{{ nutanix_username }}:{{ nutanix_password }}"
+    role_nutanix_prism_api_auth_string: "{{ role_nutanix_prism_api_username }}:{{ role_nutanix_prism_api_password }}"
   no_log: true
   when:
-    - nutanix_username is defined
-    - nutanix_username != ""
-    - nutanix_password is defined
-    - nutanix_password != ""
+    - role_nutanix_prism_api_username is defined
+    - role_nutanix_prism_api_username != ""
+    - role_nutanix_prism_api_password is defined
+    - role_nutanix_prism_api_password != ""
 
 - name: Generate authorization header
   ansible.builtin.set_fact:
-    nutanix_api_auth: "Basic {{ nutanix_auth_string | b64encode(encoding='ascii') }}"
-  when: nutanix_auth_string is defined
-
-- name: Debug nutanix_api_auth
-  ansible.builtin.debug:
-    var: nutanix_api_auth
-  when: nutanix_debug
+    role_nutanix_prism_api_auth_string_b64: "Basic {{ role_nutanix_prism_api_auth_string | b64encode(encoding='ascii') }}"
+  no_log: true
+  when: role_nutanix_prism_api_auth_string is defined
 
 - name: Unset basic authorization string
   ansible.builtin.set_fact:
-    nutanix_auth_string: ""
+    role_nutanix_prism_api_auth_string: ""
   no_log: true
-  when: nutanix_auth_string is defined
+  when: role_nutanix_prism_api_auth_string is defined
 
 - name: Test logon to API
   ansible.builtin.uri:
-    url: "https://{{ nutanix_host }}:{{ nutanix_port }}/api/nutanix/v3/users/me"
+    url: "https://{{ role_nutanix_prism_api_host }}:{{ role_nutanix_prism_api_port }}/api/nutanix/v3/users/me"
     method: GET
-    validate_certs: "{{ validate_certs }}"
+    validate_certs: "{{ role_nutanix_prism_api_validate_certs }}"
     body_format: json
     headers:
-      Authorization: "{{ nutanix_api_auth }}"
+      Authorization: "{{ role_nutanix_prism_api_auth_string_b64 }}"
     status_code: 200
     return_content: true
-  register: nutanix_api_login
+  register: role_nutanix_prism_api_login_test
   ignore_errors: false
 
-- name: Debug nutanix_api_login
+- name: Debug role_nutanix_prism_api_login_test
   ansible.builtin.debug:
-    var: nutanix_api_login
-  when: nutanix_debug
+    var: role_nutanix_prism_api_login_test
+  when: role_nutanix_prism_api_debug
 
 - name: Set Prism endpoint type
   ansible.builtin.set_fact:
-    nutanix_endpoint_prism_type: "{{ nutanix_api_login.x_ntnx_env }}"
+    role_nutanix_prism_api_endpoint_type: "{{ role_nutanix_prism_api_login_test.x_ntnx_env }}"
 
-- name: Debug nutanix_endpoint_prism_type
+- name: Debug role_nutanix_prism_api_endpoint_type
   ansible.builtin.debug:
-    var: nutanix_endpoint_prism_type
-  when: nutanix_debug
+    var: role_nutanix_prism_api_endpoint_type
+  when: role_nutanix_prism_api_debug

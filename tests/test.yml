@@ -4,7 +4,7 @@
   roles:
     - role: ../..
   vars:
-    nutanix_host: 10.38.72.37
-    nutanix_username: admin
-    nutanix_password: nx2Tech568!
-    nutanix_debug: true
+    role_nutanix_prism_api_host: 10.38.11.199
+    role_nutanix_prism_api_username: admin
+    role_nutanix_prism_api_password: nx2Tech682!
+    # role_nutanix_prism_api_debug: true

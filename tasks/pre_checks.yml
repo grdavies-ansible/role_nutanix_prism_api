@@ -1,32 +1,27 @@
 ---
 # tasks/pre_checks.yml file for role_nutanix_prism_api
-- name: Check nutanix_host is defined
+- name: Check role_nutanix_prism_api_host is defined
   ansible.builtin.fail:
-    msg: "the variable 'nutanix_host' must be defined."
+    msg: "the variable 'role_nutanix_prism_api_host' must be defined."
   when:
-    - nutanix_host is not defined
-    - nutanix_host != ""
+    - role_nutanix_prism_api_host is not defined
+    - role_nutanix_prism_api_host != ""
 
-- name: Debug nutanix_host
+- name: Debug role_nutanix_prism_api_host
   ansible.builtin.debug:
-    var: nutanix_host
-  when: nutanix_debug
+    var: role_nutanix_prism_api_host
+  when: role_nutanix_prism_api_debug
 
-- name: Check nutanix_username is defined
+- name: Check role_nutanix_prism_api_username is defined
   ansible.builtin.fail:
-    msg: "the variable 'nutanix_username' must be defined."
+    msg: "the variable 'role_nutanix_prism_api_username' must be defined."
   when:
-    - nutanix_username is not defined
-    - nutanix_username != ""
+    - role_nutanix_prism_api_username is not defined
+    - role_nutanix_prism_api_username != ""
 
-- name: Debug nutanix_username
-  ansible.builtin.debug:
-    var: nutanix_username
-  when: nutanix_debug
-
-- name: Check nutanix_password is defined
+- name: Check role_nutanix_prism_api_password is defined
   ansible.builtin.fail:
-    msg: "the variable 'nutanix_password' must be defined."
+    msg: "the variable 'role_nutanix_prism_api_password' must be defined."
   when:
-    - nutanix_password is not defined
-    - nutanix_password != ""
+    - role_nutanix_prism_api_password is not defined
+    - role_nutanix_prism_api_password != ""

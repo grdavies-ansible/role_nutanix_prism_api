@@ -1,11 +1,21 @@
 ---
 # defaults file for role_nutanix_prism_api
-nutanix_host: ""
-nutanix_username: ""
-nutanix_password: ""
-nutanix_port: 9440
-validate_certs: false
-nutanix_debug: false
+role_nutanix_prism_api_host: ""
+role_nutanix_prism_api_username: "admin"
+role_nutanix_prism_api_password: ""
+role_nutanix_prism_api_port: 9440
+role_nutanix_prism_api_validate_certs: false
+role_nutanix_prism_api_debug: false
+#
+# Variables defined during role runtime
+#
+# role_nutanix_prism_api_auth_string: ""
+# role_nutanix_prism_api_auth_string_b64: ""
+# role_nutanix_prism_api_login_test: ""
+# role_nutanix_prism_api_endpoint_type: ""
+#
+#
+# Yet to be implemented
 #
 # v4_api_availability:
 #   - pc_version: pc.2022.6

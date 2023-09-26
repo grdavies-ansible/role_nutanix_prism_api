@@ -5,7 +5,3 @@
 
 - name: Connect to the Nutanix API
   ansible.builtin.include_tasks: connect_api.yml
-
-- name: Set Nutanix v4 API facts
-  ansible.builtin.include_tasks: set_api_facts.yml
-  when: nutanix_endpoint_prism_type == "pc"
