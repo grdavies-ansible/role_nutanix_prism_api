@@ -5,6 +5,6 @@
     - role: ../..
   vars:
     role_nutanix_prism_api_host: 10.38.11.199
-    role_nutanix_prism_api_username: admin
-    role_nutanix_prism_api_password: nx2Tech682!
+    role_nutanix_prism_api_host_username: admin
+    role_nutanix_prism_api_host_password: nx2Tech682!
     # role_nutanix_prism_api_debug: true

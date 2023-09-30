@@ -12,16 +12,16 @@
     var: role_nutanix_prism_api_host
   when: role_nutanix_prism_api_debug
 
-- name: Check role_nutanix_prism_api_username is defined
+- name: Check role_nutanix_prism_api_host_username is defined
   ansible.builtin.fail:
-    msg: "the variable 'role_nutanix_prism_api_username' must be defined."
+    msg: "the variable 'role_nutanix_prism_api_host_username' must be defined."
   when:
-    - role_nutanix_prism_api_username is not defined
-    - role_nutanix_prism_api_username != ""
+    - role_nutanix_prism_api_host_username is not defined
+    - role_nutanix_prism_api_host_usernamername != ""
 
-- name: Check role_nutanix_prism_api_password is defined
+- name: Check role_nutanix_prism_api_host_password is defined
   ansible.builtin.fail:
-    msg: "the variable 'role_nutanix_prism_api_password' must be defined."
+    msg: "the variable 'role_nutanix_prism_api_host_password' must be defined."
   when:
-    - role_nutanix_prism_api_password is not defined
-    - role_nutanix_prism_api_password != ""
+    - role_nutanix_prism_api_host_password is not defined
+    - role_nutanix_prism_api_host_password != ""

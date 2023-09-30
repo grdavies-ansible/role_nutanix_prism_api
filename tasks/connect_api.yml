@@ -2,13 +2,13 @@
 # tasks/connect_api.yml file for role_nutanix_prism_api
 - name: Generate basic authorization string
   ansible.builtin.set_fact:
-    role_nutanix_prism_api_auth_string: "{{ role_nutanix_prism_api_username }}:{{ role_nutanix_prism_api_password }}"
+    role_nutanix_prism_api_auth_string: "{{ role_nutanix_prism_api_host_username }}:{{ role_nutanix_prism_api_host_password }}"
   no_log: true
   when:
-    - role_nutanix_prism_api_username is defined
-    - role_nutanix_prism_api_username != ""
-    - role_nutanix_prism_api_password is defined
-    - role_nutanix_prism_api_password != ""
+    - role_nutanix_prism_api_host_username is defined
+    - role_nutanix_prism_api_host_username != ""
+    - role_nutanix_prism_api_host_password is defined
+    - role_nutanix_prism_api_host_password != ""
 
 - name: Generate authorization header
   ansible.builtin.set_fact:
@@ -24,13 +24,13 @@
 
 - name: Unset basic authorization string
   ansible.builtin.set_fact:
-    role_nutanix_prism_api_url_base: "{{ role_nutanix_prism_api_host }}:{{ role_nutanix_prism_api_port }}"
+    role_nutanix_prism_api_url_base: "{{ role_nutanix_prism_api_host }}:{{ role_nutanix_prism_api_host_port }}"
 
 - name: Test logon to API
   ansible.builtin.uri:
     url: "https://{{ role_nutanix_prism_api_url_base }}/api/nutanix/v3/users/me"
     method: GET
-    validate_certs: "{{ role_nutanix_prism_api_validate_certs }}"
+    validate_certs: "{{ role_nutanix_prism_api_host_validate_certs }}"
     body_format: json
     headers:
       Authorization: "{{ role_nutanix_prism_api_auth_string_b64 }}"
